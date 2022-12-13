@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link
+            rel="stylesheet"
+            href="{{ url_for('weather_bp.static', filename='style.css') }}"
+    >
+    <title>Weather</title>
+</head>
+<body>
+    <div class="content">
+        {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+    <form action="" method="post">
+        <input
+                type="text"
+                name="city_name"
+                placeholder="city name"
+                class="form_input"
+        >
+        <button class="form_btn">Get</button>
+    </form>
+        <div class="info">
+            <div class="info_block">
+                {% if current_info %}
+                <h2>Weather info</h2>
+                    {% for key, value in current_info.items() %}
+                        <div class="item">
+                            <span class="key">{{ key }}</span> :
+                            <span class="value">{{ value }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+
+        <div class="info_block">
+            {% if location_info %}
+            <h2>Location info</h2>
+                {% for key, value in location_info.items() %}
+                    <div class="item">
+                        <span class="key">{{ key }}</span> :
+                        <span class="value">{{ value }}</span>
+                    </div>
+                {% endfor %}
+        {% endif %}
+        </div>
+        </div>
+    </div>
+</body>
+</html>
